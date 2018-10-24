@@ -1,4 +1,4 @@
-public class S05Ejercicio18 {
+public class S05E18 {
 
   public static void main(String[] args) {
     
