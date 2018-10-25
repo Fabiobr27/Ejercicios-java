@@ -7,23 +7,38 @@ public class S6Ejercicio03{
     
     switch(numeroPalo){
       case 1:
-      palo = "vasto";
+      palo = "Vasto";
       break;
       case 2:
-      palo = "copa";
+      palo = "Copa";
       break;
       case 3:
-      palo="espada";
+      palo="Espada";
       break;
       case 4:
-      palo="oro";
+      palo="Oro";
       default:
     }
+     int numeroCarta= (int)(Math.random()*13+1);
+    switch(numeroCarta){
+      case 1:
+      carta = "As";
+      break;
+      case 11:
+      carta = "Caballo";
+      break;
+      case 12:
+      carta= "Sota";
+      break;
+      case 13:
+      carta= "Rey";
+      break;
+      default:
+      
+      carta = String.valueOf(numeroCarta);
+    }
     
-    int numeroCarta= (int)(Math.random()*12+1);
     
-    carta = String.valueOf(numeroCarta);
-   
     System.out.println( carta + " de " + palo);
 
 
