@@ -29,9 +29,8 @@ public class Factura{
     }if(codigoDescuento == 778){
       //5 % descuento 20 primera unidades
       for(int i = 0 ; i < 20; i++){
-      Descuento = (precioArticulo * 0.05);
-      precioConDescuento = (precioTotal - Descuento * aux);
-      aux++;
+      Descuento = (precioArticulo * 0.05) * numeroUnidades;
+      precioConDescuento = (precioTotal - Descuento);
       }
       
       
@@ -47,17 +46,30 @@ public class Factura{
     
     double ivaPrecio = (precioConDescuento * 0.21);
     double precioFinal = (precioConDescuento + ivaPrecio);
+    /*
+    System.out.println("A continuación , se le muestra el precio desglosado del pedido:");
+    //Salida formateada
+    System.out.println("----------------------------------------------------------");
+    System.out.printf("Precio del articulo                      %7.2f > € \n" , precioArticulo);
+    System.out.printf("Numero de unidades                      %4d\n", numeroUnidades );
+    System.out.println("Precio total de unidades                %7.2f > € \n" + precioTotal);
+    System.out.println("Descuento aplicado :Código de descuento : " + codigoDescuento + "---->" +Descuento + " $ "); 
+    System.out.println("Precio con descuento ---------------------------> " +  precioConDescuento + " $ ");
+    System.out.println("IVA (21%) --------------------------------------> " +  ivaPrecio + " $ ");
+    System.out.println("-----------------------------------------------------------");
+    System.out.println("Precio Final -----------------------------------> " + precioFinal + " $ ");
+    */
     
-    
-    System.out.println("---------------------------------------------------");
-    System.out.println("Precio del articulo ----------->  " + precioArticulo + " $ ");
-    System.out.println("Numero de unidades ---------->  " + numeroUnidades + " $ ");
-    System.out.println("Precio total de unidades-------->  " + precioTotal + " $ ");
-    System.out.println("Descuento aplicado :Código de descuento : " + codigoDescuento + "------->" +Descuento + " $ "); 
-    System.out.println("Precio con descuento ----------> " +precioConDescuento + " $ ");
-    System.out.println("IVA (21%) ----------> " + ivaPrecio + " $ ");
-    System.out.println("---------------------------------------------------");
-    System.out.println("Precio Final ----------> " + precioFinal + " $ ");
+    System.out.println("----------------------------------------------------------");
+    System.out.println("Precio del articulo ---------------------------->  " + precioArticulo + " $ ");
+    System.out.println("Numero de unidades ----------------------------->  " + numeroUnidades + " $ ");
+    System.out.println("Precio total de unidades------------------------>  " + precioTotal + " $ ");
+    System.out.println("Descuento aplicado :Código de descuento : " + codigoDescuento + "---->" +Descuento + " $ "); 
+    System.out.println("Precio con descuento ---------------------------> " +  precioConDescuento + " $ ");
+    System.out.println("IVA (21%) --------------------------------------> " +  ivaPrecio + " $ ");
+    System.out.println("-----------------------------------------------------------");
+    System.out.println("Precio Final -----------------------------------> " + precioFinal + " $ ");
+  
     
     
   }

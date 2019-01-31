@@ -33,7 +33,7 @@ public class Repaso5{
         k++;
       }
     }
-    */
+   
     
     int fil=0;
     int col=0;
@@ -42,7 +42,8 @@ public class Repaso5{
       col++;
       if (col >=3) {
         fil++;
-        col = 0;
+        col = 0; 
+        */
       }
       
     }
