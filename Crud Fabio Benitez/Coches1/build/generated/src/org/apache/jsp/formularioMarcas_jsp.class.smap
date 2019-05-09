@@ -1,0 +1,22 @@
+SMAP
+formularioMarcas_jsp.java
+JSP
+*S JSP
+*F
++ 0 formularioMarcas.jsp
+formularioMarcas.jsp
++ 1 ConectividadBaseDeDatos.jsp
+ConectividadBaseDeDatos.jsp
+*L
+5,6:57
+5#1,9:62
+16,5:73
+20:78
+10#0,291:79
+300,9:370
+308,18:379
+325,11:397
+335,6:408
+340,4:414
+343,35:418
+*E

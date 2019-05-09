@@ -14,6 +14,9 @@
 
 <%@page import="java.sql.Connection"%>
 
+<%@include file="ConectividadBaseDeDatos.jsp" %>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -28,35 +31,30 @@
 
     <body>
 
-        <%
+        <%            Class.forName("com.mysql.jdbc.Driver");
 
-            Class.forName("com.mysql.jdbc.Driver");
-
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/coches1", "root", "");
+            Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
 
             Statement s = conexion.createStatement();
 
             request.setCharacterEncoding("UTF-8");
 
-           // String CodEspe ="select MAX(CodEspe) from especificaciones";
-            
-            String insercion = "INSERT INTO especificaciones (Caballos, Año, CodigoMod , Combustible) VALUES (" 
+            String insercion = "INSERT INTO especificaciones (Caballos, Año, CodigoMod , Combustible) VALUES ("
                     + " " + Integer.valueOf(request.getParameter("Caballos"))
                     + ", " + Integer.valueOf(request.getParameter("Año"))
                     + " , " + Integer.valueOf(request.getParameter("CodigoMod"))
                     + ", '" + request.getParameter("Combustible") + "')";
-            
-           s.execute(insercion);
+
+            s.execute(insercion);
             conexion.close();
 
-             
-            //out.print(insercion);
           
+
         %>
 
 
 
-         <script>document.location = "index.jsp" </script> 
+        <script>document.location = "PideEspecificacion.jsp"</script> 
     </body>
 
 </html>

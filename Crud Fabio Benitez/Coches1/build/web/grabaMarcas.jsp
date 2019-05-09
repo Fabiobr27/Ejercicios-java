@@ -14,6 +14,9 @@
 
 <%@page import="java.sql.Connection"%>
 
+<%@include file="ConectividadBaseDeDatos.jsp" %>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -23,7 +26,7 @@
     <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <link rel="stylesheet" type="text/css" href="Estilo/estilo.css" />
+        <link rel="stylesheet" type="text/css" href="Estilo/estilo.css" />
         <style>
             body{
                 background-image: url("img/fondo2.jpg");
@@ -56,30 +59,27 @@
 
     <body>
 
-        <%
+        <%            Class.forName("com.mysql.jdbc.Driver");
 
-            Class.forName("com.mysql.jdbc.Driver");
-
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/coches1", "root", "");
+            Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
 
             Statement s = conexion.createStatement();
 
             request.setCharacterEncoding("UTF-8");
 
-           
-            String insercion = "INSERT INTO marcas VALUES ('"  + request.getParameter("NombreMarca")
+            String insercion = "INSERT INTO marcas VALUES ('" + request.getParameter("NombreMarca")
                     + " ', " + Integer.valueOf(request.getParameter("CodigoMarca"))
                     + ", " + Integer.valueOf(request.getParameter("AñoFundacion")) + ")";
 
-           s.execute(insercion);
+            s.execute(insercion);
             conexion.close();
-          
+
 
         %>
 
 
 
-      <script>document.location = "ListaMarcas.jsp"</script> 
+        <script>document.location = "ListaMarcas.jsp"</script> 
     </body>
 
 </html>

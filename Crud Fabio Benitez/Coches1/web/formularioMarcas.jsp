@@ -7,6 +7,7 @@
 <%@page import="java.sql.ResultSet"%> 
 <%@page import="java.sql.DriverManager"%> 
 <%@page import="java.sql.Connection"%>
+<%@include file="ConectividadBaseDeDatos.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -18,7 +19,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="shortcut icon" href="img/favicon.ico" />
         <title>Formulario Marcas</title>
-             <style>
+        <style>
 
             #RecogidaDatos{
                 background-color: rgba(51,51,51,0.85);
@@ -170,7 +171,7 @@
                 float:left;
                 margin: 1%;
                 padding: 0%; 
-                
+
             }
 
             .wrapper h1 {
@@ -296,11 +297,9 @@
 
     <body>
 
-  <%
+        <%            Class.forName("com.mysql.jdbc.Driver");
 
-            Class.forName("com.mysql.jdbc.Driver");
-
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/coches1", "root", "");
+            Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
 
             Statement s = conexion.createStatement();
 
@@ -308,21 +307,21 @@
 
         %>
 
-       
- <table class="container">
-                <thead>
-                    <tr>
-                        <th><h1>Codigo Marca</h1></th>
-                        <th><h1>Nombre</h1></th>
-                        <th><h1>Año fundacion</h1></th>
-                          <th><h1><form action="index.html">
+
+        <table class="container">
+            <thead>
+                <tr>
+                    <th><h1>Codigo Marca</h1></th>
+                    <th><h1>Nombre</h1></th>
+                    <th><h1>Año fundacion</h1></th>
+                    <th><h1><form action="index.html">
 
                                 <input type="submit" value="Inicio">
                             </form></h1></th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
+
+                </tr>
+            </thead>
+            <tbody>
                 <%       while (listado.next()) {
 
                         out.println("<tr><td>");
@@ -331,28 +330,27 @@
 
                         out.println("<td>" + listado.getString("NombreMarca") + "</td>");
 
-
                         out.println("<td>" + listado.getString("AñoFundacion") + "</td>");
 
                 %>
 
 
-            </tr>
+                </tr>
 
-            <%        } // while   
+                <%        } // while   
 
-                conexion.close();
-            %>
+                    conexion.close();
+                %>
 
         </table>
 
-        
 
-         <div class="wrapper">
+
+        <div class="wrapper">
 
 
             <!-- Formulario -->
-            <form action=grabaMarcas.jsp" method="post" class="login">
+            <form action="grabaMarcas.jsp" method="post" class="login"> 
                 <h2>Inserta Marca</h2>
 
                 <!-- Contenedor del Formulario -->
@@ -360,15 +358,15 @@
                     <label>Nombre Marca</label>
                     <input type="text" name="NombreMarca"/>
                     <label>Codigo Marca</label>
-                   <input type="text" name="CodigoMarca"/></br>
+                    <input type="text" name="CodigoMarca"/></br>
                     <label>Año Fundacion</label>
-                   <input type="text" name="AñoFundacion"/>
-           
+                    <input type="text" name="AñoFundacion"/>
+
 
 
 
                     <input type="submit" value="Confirmar" class="primary_action">
-                    
+
                 </div>
             </form>
         </div>

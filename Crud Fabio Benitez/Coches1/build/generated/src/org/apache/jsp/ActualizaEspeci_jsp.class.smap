@@ -1,0 +1,18 @@
+SMAP
+ActualizaEspeci_jsp.java
+JSP
+*S JSP
+*F
++ 0 ActualizaEspeci.jsp
+ActualizaEspeci.jsp
++ 1 ConectividadBaseDeDatos.jsp
+ConectividadBaseDeDatos.jsp
+*L
+5,7:57
+5#1,15:63
+20,20:79
+39,4:99
+11#0,15:102
+26:118,2
+27,7:120
+*E

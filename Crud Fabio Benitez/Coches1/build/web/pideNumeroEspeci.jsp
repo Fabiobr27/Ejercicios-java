@@ -12,6 +12,8 @@
 
 <%@page import="java.sql.Connection"%>
 
+<%@include file="ConectividadBaseDeDatos.jsp" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -141,11 +143,9 @@
     </head>
     <body>
 
-        <%
+        <%            Class.forName("com.mysql.jdbc.Driver");
 
-            Class.forName("com.mysql.jdbc.Driver");
-
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/coches1", "root", "");
+            Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
 
             Statement s = conexion.createStatement();
 

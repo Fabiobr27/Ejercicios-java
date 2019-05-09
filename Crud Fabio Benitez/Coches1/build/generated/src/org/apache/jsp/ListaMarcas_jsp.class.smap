@@ -1,0 +1,22 @@
+SMAP
+ListaMarcas_jsp.java
+JSP
+*S JSP
+*F
++ 0 ListaMarcas.jsp
+ListaMarcas.jsp
++ 1 ConectividadBaseDeDatos.jsp
+ConectividadBaseDeDatos.jsp
+*L
+5,7:57
+5#1,9:63
+16,5:74
+20:79
+11#0,130:80
+142,9:212
+150,20:221
+169,12:241
+180,7:253
+186,5:260
+190,9:265
+*E

@@ -8,6 +8,8 @@
 <%@page import="java.sql.ResultSet"%> 
 <%@page import="java.sql.DriverManager"%> 
 <%@page import="java.sql.Connection"%>
+<%@include file="ConectividadBaseDeDatos.jsp" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -19,7 +21,7 @@
 
 
         <style>
-         
+
 
             * { box-sizing: border-box; }
 
@@ -40,7 +42,7 @@
                 max-width: 900px;
                 margin: 2%;
                 text-align: center;
-              color: white;
+                color: white;
                 padding: 4%;
                 font-size: 100%;
             }
@@ -68,7 +70,7 @@
             }
 
             .text { font-size: 30px; }
-           
+
 
             .panel :hover {
                 color: #6c6c6c;
@@ -111,69 +113,68 @@
     <body>
         <form  id = "RecogidaDatos" method="get" action="ListaEspeci.jsp" >
             <main>
-                
-
-            <h2>Señala la marca que quieres mostrar:</h2>
-            <div class="menu">
-
-                <div class="panel">
-                    <label class="text" for="toggle">Modelo</label>
-                    
-                </div>
-
-                <input type="checkbox" id="toggle">
-
-                <div class="dropdown">
-                    <div class="arrow"></div>
-
-                    <a href="#" class="row">
-                        <div class="text">  <select name="CodigoMod" onchange="salta(this.form)">
-                        </div>
-                        <i class="icon fas fa-user"></i>
-                    </a>
 
 
+                <h2>Señala la marca que quieres mostrar:</h2>
+                <div class="menu">
 
-  <%
+                    <div class="panel">
+                        <label class="text" for="toggle">Modelo</label>
 
-                    Class.forName("com.mysql.jdbc.Driver");
+                    </div>
 
-                    Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/coches1", "root", "");
+                    <input type="checkbox" id="toggle">
 
-                    Statement s = conexion.createStatement();
+                    <div class="dropdown">
+                        <div class="arrow"></div>
 
-                    ResultSet listado = s.executeQuery("SELECT  NombreMod, mo.CodigoMod"
-                            + " FROM  modelo  mo, especificaciones espe "
-                            + "Where mo.CodigoMod = espe.CodigoMod"
-                    );
-                %>
+                        <a href="#" class="row">
+                            <div class="text">  <select name="CodigoMod" onchange="salta(this.form)">
+                            </div>
+                            <i class="icon fas fa-user"></i>
+                        </a>
 
 
 
-                    <option selected> ---
-                         <%        while (listado.next()) {
+                        <%      Class.forName("com.mysql.jdbc.Driver");
 
-                            out.println("<option value=\"" + (listado.getString("CodigoMod") + "\">" + listado.getString("NombreMod")));
-                    %>
+                            Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
 
+                            Statement s = conexion.createStatement();
 
-
-
-
-
-
-                        <%        } // while   
-
-                            conexion.close();
-
+                            ResultSet listado = s.executeQuery("SELECT  NombreMod, mo.CodigoMod"
+                                    + " FROM  modelo  mo, especificaciones espe "
+                                    + "Where mo.CodigoMod = espe.CodigoMod"
+                            );
                         %>
-                </div>
 
-            </div>
-        </select>
-        <input type="submit" value="Aceptar">  
-        </main>
- 
-</body>
+
+
+                        <option selected> ---
+                            <%        while (listado.next()) {
+
+                                    out.println("<option value=\"" + (listado.getString("CodigoMod") + "\">" + listado.getString("NombreMod")));
+                            %>
+
+
+
+
+
+
+
+
+                            <%        } // while   
+
+                                conexion.close();
+
+                            %>
+                    </div>
+
+                </div>
+                </select>
+                <input type="submit" value="Aceptar">  
+            </main>
+
+    </body>
 </html>
 

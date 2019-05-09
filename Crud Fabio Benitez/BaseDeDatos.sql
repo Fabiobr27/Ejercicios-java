@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-04-2019 a las 10:41:12
+-- Tiempo de generación: 09-05-2019 a las 23:09:49
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `coches1`
 --
+CREATE DATABASE IF NOT EXISTS `coches1` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
+USE `coches1`;
 
 -- --------------------------------------------------------
 
@@ -28,13 +30,16 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `especificaciones`
 --
 
-CREATE TABLE `especificaciones` (
-  `CodEspe` int(11) NOT NULL,
+DROP TABLE IF EXISTS `especificaciones`;
+CREATE TABLE IF NOT EXISTS `especificaciones` (
+  `CodEspe` int(11) NOT NULL AUTO_INCREMENT,
   `Caballos` int(11) NOT NULL,
   `Año` int(11) NOT NULL,
   `CodigoMod` int(11) NOT NULL,
-  `Combustible` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+  `Combustible` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  PRIMARY KEY (`CodEspe`),
+  KEY `CodigoMod` (`CodigoMod`)
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `especificaciones`
@@ -49,10 +54,10 @@ INSERT INTO `especificaciones` (`CodEspe`, `Caballos`, `Año`, `CodigoMod`, `Com
 (6, 105, 2010, 8, 'Gasolina'),
 (7, 600, 2017, 3, 'Gasolina'),
 (9, 90, 2011, 5, 'Diesel'),
-(10, 400, 2018, 2, 'Gasolina'),
 (11, 184, 2011, 4, 'Diesel'),
 (32, 310, 2017, 10, 'Gasolina'),
-(34, 350, 2018, 11, 'Gasolina');
+(36, 3500, 2004, 2, 'Gasolina'),
+(37, 400, 2018, 2, 'Gasolina');
 
 -- --------------------------------------------------------
 
@@ -60,10 +65,12 @@ INSERT INTO `especificaciones` (`CodEspe`, `Caballos`, `Año`, `CodigoMod`, `Com
 -- Estructura de tabla para la tabla `marcas`
 --
 
-CREATE TABLE `marcas` (
+DROP TABLE IF EXISTS `marcas`;
+CREATE TABLE IF NOT EXISTS `marcas` (
   `NombreMarca` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
   `CodigoMarca` int(11) NOT NULL,
-  `AñoFundacion` int(11) NOT NULL DEFAULT '1900'
+  `AñoFundacion` int(11) NOT NULL DEFAULT '1900',
+  PRIMARY KEY (`CodigoMarca`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
@@ -78,8 +85,7 @@ INSERT INTO `marcas` (`NombreMarca`, `CodigoMarca`, `AñoFundacion`) VALUES
 ('Seat', 5, 1950),
 ('Ford', 6, 1903),
 ('Fiat', 7, 1808),
-('Prueba ', 8, 12345),
-('Prueba1 ', 9, 1808);
+('Toyota', 8, 1234);
 
 -- --------------------------------------------------------
 
@@ -87,10 +93,13 @@ INSERT INTO `marcas` (`NombreMarca`, `CodigoMarca`, `AñoFundacion`) VALUES
 -- Estructura de tabla para la tabla `modelo`
 --
 
-CREATE TABLE `modelo` (
+DROP TABLE IF EXISTS `modelo`;
+CREATE TABLE IF NOT EXISTS `modelo` (
   `NombreMod` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
   `CodigoMod` int(11) NOT NULL,
-  `CodigoMarca` int(11) NOT NULL
+  `CodigoMarca` int(11) NOT NULL,
+  PRIMARY KEY (`CodigoMod`),
+  KEY `CodigoMarca` (`CodigoMarca`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
@@ -107,43 +116,7 @@ INSERT INTO `modelo` (`NombreMod`, `CodigoMod`, `CodigoMarca`) VALUES
 ('Ibiza', 7, 5),
 ('Leon', 8, 5),
 ('Focus', 9, 6),
-('Mustang', 10, 6),
-('Fabio45  ', 11, 8),
-('Fabio ', 12, 9);
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `especificaciones`
---
-ALTER TABLE `especificaciones`
-  ADD PRIMARY KEY (`CodEspe`),
-  ADD KEY `CodigoMod` (`CodigoMod`);
-
---
--- Indices de la tabla `marcas`
---
-ALTER TABLE `marcas`
-  ADD PRIMARY KEY (`CodigoMarca`);
-
---
--- Indices de la tabla `modelo`
---
-ALTER TABLE `modelo`
-  ADD PRIMARY KEY (`CodigoMod`),
-  ADD KEY `CodigoMarca` (`CodigoMarca`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `especificaciones`
---
-ALTER TABLE `especificaciones`
-  MODIFY `CodEspe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+('Mustang', 10, 6);
 
 --
 -- Restricciones para tablas volcadas

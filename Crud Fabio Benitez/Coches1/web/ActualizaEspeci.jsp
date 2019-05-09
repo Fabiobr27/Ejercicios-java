@@ -1,12 +1,15 @@
 <%-- 
-    Document   : ActualizaMarcas
-    Created on : 11-abr-2019, 20:16:14
-    Author     : FABIO
+Document   : ActualizaMarcas
+Created on : 11-abr-2019, 20:16:14
+Author     : FABIO
 --%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
+<%@include file="ConectividadBaseDeDatos.jsp" %>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,9 +24,10 @@
 
     </head>
     <body>
-        <%
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/coches1", "root", "");
+        <%            Class.forName("com.mysql.jdbc.Driver");
+
+            Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
+
             Statement s = conexion.createStatement();
 
             request.setCharacterEncoding("UTF-8");
@@ -35,15 +39,14 @@
                     + "' Where CodEspe = " + Integer.parseInt(request.getParameter("CodEspe"));
 
             //out.println(actualizacion);
-          
             s.execute(actualizacion);
             out.println("Modelo actualizado correctamente.");
 
             conexion.close();
-             
+
         %>
         <br>
-      <script>document.location = "pideNumeroEspeci.jsp"</script> 
+        <script>document.location = "pideNumeroEspeci.jsp"</script> 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Escritorio/Fabio/1º%20DAW/PROGRAMACIÓN/NetBeansProjects/Jsp/Coches1/web/ListaMarcas.jsp</file>
-            <file>file:/D:/Escritorio/Fabio/1º%20DAW/PROGRAMACIÓN/NetBeansProjects/Jsp/Coches1/web/ListaEspeci.jsp</file>
+            <file>file:/D:/Escritorio/Fabio/1º%20DAW/PROGRAMACIÓN/NetBeansProjects/Jsp/Coches1/web/grabaModelo.jsp</file>
+            <file>file:/D:/Escritorio/Fabio/1º%20DAW/PROGRAMACIÓN/NetBeansProjects/Jsp/Coches1/web/formularioModelo.jsp</file>
+            <file>file:/D:/Escritorio/Fabio/1º%20DAW/PROGRAMACIÓN/NetBeansProjects/Jsp/Coches1/web/grabaEspeci.jsp</file>
+            <file>file:/D:/Escritorio/Fabio/1º%20DAW/PROGRAMACIÓN/NetBeansProjects/Jsp/Coches1/web/formularioEspeci.jsp</file>
+            <file>file:/D:/Escritorio/Fabio/1º%20DAW/PROGRAMACIÓN/NetBeansProjects/Jsp/Coches1/web/formularioMarcas.jsp</file>
             <file>file:/D:/Escritorio/Fabio/1º%20DAW/PROGRAMACIÓN/NetBeansProjects/Jsp/Coches1/web/index.html</file>
-            <file>file:/D:/Escritorio/Fabio/1º%20DAW/PROGRAMACIÓN/NetBeansProjects/Jsp/Coches1/web/PideModelo.jsp</file>
-            <file>file:/D:/Escritorio/Fabio/1º%20DAW/PROGRAMACIÓN/NetBeansProjects/Jsp/Coches1/web/PideEspecificacion.jsp</file>
-            <file>file:/D:/Escritorio/Fabio/1º%20DAW/PROGRAMACIÓN/NetBeansProjects/Jsp/Coches1/web/ListaModelo.jsp</file>
+            <file>file:/D:/Escritorio/Fabio/1º%20DAW/PROGRAMACIÓN/NetBeansProjects/Jsp/Coches1/web/grabaMarcas.jsp</file>
         </group>
     </open-files>
 </project-private>

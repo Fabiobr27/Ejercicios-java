@@ -7,6 +7,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
+<%@include file="ConectividadBaseDeDatos.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,12 +19,14 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-        
+
     </head>
     <body>
         <%
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/coches1", "root", "");
+
+            Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
+
             Statement s = conexion.createStatement();
 
             request.setCharacterEncoding("UTF-8");
@@ -31,9 +34,9 @@
             String actualizacion = "UPDATE modelo SET "
                     + "NombreMod ='" + request.getParameter("NombreMod")
                     + " ' Where CodigoMod = " + Integer.valueOf(request.getParameter("CodigoMod"));
-           
+
             out.println(actualizacion);
-          
+
             s.execute(actualizacion);
             out.println("Modelo actualizado correctamente.");
 
@@ -41,9 +44,9 @@
 
         %>
         <br>
-   <script>document.location = "pideNumeroModelo.jsp" </script> 
+        <script>document.location = "pideNumeroModelo.jsp"</script> 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-</body>
+    </body>
 </html>

@@ -11,6 +11,9 @@
 
 <%@page import="java.sql.Connection"%>
 
+<%@include file="ConectividadBaseDeDatos.jsp" %>
+                       
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

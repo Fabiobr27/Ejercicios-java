@@ -1,0 +1,18 @@
+SMAP
+ActualizaMarcas_jsp.java
+JSP
+*S JSP
+*F
++ 0 ActualizaMarcas.jsp
+ActualizaMarcas.jsp
++ 1 ConectividadBaseDeDatos.jsp
+ConectividadBaseDeDatos.jsp
+*L
+5,7:57
+5#1,9:63
+16,5:74
+20:79
+11#0,17:80
+27,18:97
+44,8:115
+*E

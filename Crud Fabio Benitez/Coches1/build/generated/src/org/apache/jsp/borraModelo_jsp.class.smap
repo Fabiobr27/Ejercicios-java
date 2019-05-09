@@ -1,0 +1,18 @@
+SMAP
+borraModelo_jsp.java
+JSP
+*S JSP
+*F
++ 0 borraModelo.jsp
+borraModelo.jsp
++ 1 ConectividadBaseDeDatos.jsp
+ConectividadBaseDeDatos.jsp
+*L
+5,11:57
+5#1,9:67
+16,5:78
+20:83
+15#0,18:84
+32,9:102
+40,6:111
+*E
