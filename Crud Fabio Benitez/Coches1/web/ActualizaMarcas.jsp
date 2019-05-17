@@ -30,7 +30,7 @@
 
             String actualizacion = "UPDATE marcas SET "
                     + "NombreMarca ='" + request.getParameter("NombreMarca")
-                    + "',AñoFundacion=" + Integer.valueOf(request.getParameter("AñoFundacion")) + " Where CodigoMarca = " + Integer.valueOf(request.getParameter("CodigoMarca"));
+                    + "',AñoFundacion=" + Integer.valueOf(request.getParameter("AnioFundacion")) + " Where CodigoMarca = " + Integer.valueOf(request.getParameter("CodigoMarca"));
            
           //  out.println(actualizacion);
             s.execute(actualizacion);
