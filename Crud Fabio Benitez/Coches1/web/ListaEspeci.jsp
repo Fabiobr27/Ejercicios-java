@@ -8,8 +8,6 @@
 <%@page import="java.sql.ResultSet"%> 
 <%@page import="java.sql.DriverManager"%> 
 <%@page import="java.sql.Connection"%>
-<%@include file="ConectividadBaseDeDatos.jsp" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -138,9 +136,11 @@
 
     <body>
 
-        <%            Class.forName("com.mysql.jdbc.Driver");
+        <%
 
-            Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
+            Class.forName("com.mysql.jdbc.Driver");
+
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/coches1", "root", "");
 
             Statement s = conexion.createStatement();
 
@@ -159,31 +159,31 @@
                     <th><h1>Caballos</h1></th>
                     <th><h1>Año</h1></th>
                     <th><h1>Combustible</h1></th>
-                    <th><h1><form action="index.html">
+                     <th><h1><form action="index.jsp">
 
                                 <input type="submit" value="Inicio">
                             </form></h1></th>
                 </tr>
             </thead>
             <tbody>
+                
+
+                    <%        while (listado.next()) {
+
+                            out.println("<tr><td>");
+
+                            out.println(listado.getString("NombreMarca") + "</td>");
+
+                            out.println("<td>" + listado.getString("NombreMod") + "</td>");
+
+                            out.println("<td>" + listado.getString("Caballos") + "</td>");
+
+                            out.println("<td>" + listado.getString("Año") + "</td>");
+
+                            out.println("<td>" + listado.getString("Combustible") + "</td>");
 
 
-                <%        while (listado.next()) {
-
-                        out.println("<tr><td>");
-
-                        out.println(listado.getString("NombreMarca") + "</td>");
-
-                        out.println("<td>" + listado.getString("NombreMod") + "</td>");
-
-                        out.println("<td>" + listado.getString("Caballos") + "</td>");
-
-                        out.println("<td>" + listado.getString("Año") + "</td>");
-
-                        out.println("<td>" + listado.getString("Combustible") + "</td>");
-
-
-                %>
+                    %>
 
 
                 </tr>

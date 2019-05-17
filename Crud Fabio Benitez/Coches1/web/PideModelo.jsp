@@ -19,7 +19,7 @@
 
 
         <style>
-         
+
 
             * { box-sizing: border-box; }
 
@@ -40,7 +40,7 @@
                 max-width: 900px;
                 margin: 2%;
                 text-align: center;
-              color: white;
+                color: white;
                 padding: 4%;
                 font-size: 100%;
             }
@@ -68,7 +68,7 @@
             }
 
             .text { font-size: 30px; }
-           
+
 
             .panel :hover {
                 color: #6c6c6c;
@@ -111,67 +111,67 @@
     <body>
         <form  id = "RecogidaDatos" method="get" action="ListaModelo.jsp" >
             <main>
-                
-
-            <h2>Señala la marca que quieres mostrar:</h2>
-            <div class="menu">
-
-                <div class="panel">
-                    <label class="text" for="toggle">Marcas</label>
-                    
-                </div>
-
-                <input type="checkbox" id="toggle">
-
-                <div class="dropdown">
-                    <div class="arrow"></div>
-
-                    <a href="#" class="row">
-                        <div class="text">  <select name="CodMarca" onchange="salta(this.form)">
-                        </div>
-                        <i class="icon fas fa-user"></i>
-                    </a>
 
 
+                <h2>Señala la marca que quieres mostrar:</h2>
+                <div class="menu">
 
-                    <%
+                    <div class="panel">
+                        <label class="text" for="toggle">Marcas</label>
 
-                        Class.forName("com.mysql.jdbc.Driver");
-                        
-                        
-                        Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre,Contrasena);
+                    </div>
+
+                    <input type="checkbox" id="toggle">
+
+                    <div class="dropdown">
+                        <div class="arrow"></div>
+
+                        <a href="#" class="row">
+                            <div class="text">  <select name="CodMarca" onchange="salta(this.form)">
+                            </div>
+                            <i class="icon fas fa-user"></i>
+                        </a>
+
+
+
+                        <%                        Class.forName("com.mysql.jdbc.Driver");
+
+                        Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
+
 
                         Statement s = conexion.createStatement();
 
                         ResultSet listado = s.executeQuery("SELECT NombreMarca, CodigoMarca"
-                                + " FROM marcas  "
-                        );
-                    %>
+                        + " FROM marcas  ");
 
 
-                    <option selected> ---
-                        <%        while (listado.next()) {
-
-                                out.println("<option value=\"" + (listado.getString("CodigoMarca") + "\">" + listado.getString("NombreMarca")));
                         %>
 
 
+                        <option selected> Elija Marca
+
+                            <%        while (listado.next()) {
+
+                                    out.println("<option value=\"" + (listado.getString("CodigoMarca") + "\">" + listado.getString("NombreMarca")));
+                            %>
 
 
 
 
 
-                        <%        } // while   
 
-                            conexion.close();
 
-                        %>
+                            <%        } // while   
+
+                                conexion.close();
+
+                            %>
+                    </div>
+
                 </div>
+                </select>
+                <input type="submit" value="Aceptar">  
+            </main>
 
-            </div>
-        </select>
-        <input type="submit" value="Aceptar">  
-        </main>
-   
-</body>
+    </body>
 </html>

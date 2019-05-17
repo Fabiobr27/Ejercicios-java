@@ -141,7 +141,7 @@
 
             Class.forName("com.mysql.jdbc.Driver");
 
-            Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre,Contrasena);
+            Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
 
             Statement s = conexion.createStatement();
 
@@ -157,7 +157,7 @@
                     <th><h1>Nombre marca</h1></th>
                     <th><h1>Año fundacion </h1></th>
                    
-                    <th><h1><form action="index.html">
+                    <th><h1><form action="index.jsp">
 
                                 <input type="submit" value="Inicio">
                             </form></h1></th>

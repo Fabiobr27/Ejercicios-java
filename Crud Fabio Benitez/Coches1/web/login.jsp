@@ -1,26 +1,39 @@
 <%-- 
-    Document   : ModificaSocio
-    Created on : 21-mar-2019, 10:35:27
+    Document   : login
+    Created on : 15-may-2019, 8:35:41
     Author     : FABIO
 --%>
-<%@page import="java.sql.Statement"%>
-
-<%@page import="java.sql.ResultSet"%>
-
-<%@page import="java.sql.DriverManager"%>
-
-<%@page import="java.sql.Connection"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="shortcut icon" href="img/favicon.ico" />
+        
         <style>
+            
+      
+            
+                    body{
+                background-image: url("img/fondo2.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                font-weight: 250;
+                line-height: 1.42em;
+                color:#A7A1AE;
 
+            }
+
+       
+
+           
+
+
+            @media (max-width: 800px) {
+                .container td:nth-child(4),
+                .container th:nth-child(4) { display: none; }
+            }
             * {
                 margin: 0;
                 padding: 0;
@@ -39,18 +52,22 @@
             ====================================*/
 
             .wrapper {
-                margin: 60px auto;
-                max-width: 450px;
-                width: 80%;
+                margin: 5px auto;
+                max-width: 250px;
+                width: 50%;
+                border-radius: 25px;
+                text-align: center;
                 position: relative;
-                left: -20%;
+                          left: 20%;
+                margin: 1%;
+                padding: 0%; 
+                
             }
-
 
             .wrapper h1 {
                 text-align: center;
                 color: #FFF;
-                font: 300 3.6em 'Roboto Condensed', 'Open Sans', Arial, 'Helvetica Neue', Sans-serif, Verdana;
+                font: 250 3.6em 'Roboto Condensed', 'Open Sans', Arial, 'Helvetica Neue', Sans-serif, Verdana;
                 text-shadow: 0 2px 0 rgba(0,0,0,0.2);
                 margin-bottom: 40px;
             }
@@ -164,34 +181,57 @@
                 background: #558eb1;
             }
 
+            #MensajeError{color: white;
+                          font-size: 1.3vw; 
+                          position: relative;
+                          left: 20%;
+                     
+                             
+            }
+            
         </style>
-
+   <title>Registro</title>
     </head>
     <body>
-        <% request.setCharacterEncoding("UTF-8");%>
+       
+   
 
-        <div class="wrapper">
+ <div class="wrapper">
 
 
             <!-- Formulario -->
-            <form action="ActualizaModelo.jsp" method="post" class="login">
-                <h2>Modifica Modelo</h2>
+            <form action="validaUsuario.jsp" method="post" class="login">
+                <h2>Registrarse</h2>
 
                 <!-- Contenedor del Formulario -->
                 <div class="login-container">
-                    <input type="hidden"  name="CodigoMod" value="<%= request.getParameter("CodigoMod")%>">
-                    <label>Nombre Modelo</label>
-                    <input type="text"  name="NombreMod" value="<%= request.getParameter("NombreMod")%>">
+                    <label>Usuario</label>
+                    <input type="text" name="Usuario"/>
+                    <label>Contraseña </label>
+                    <input type="password" name="Contrasena"/></br>
+                
 
 
 
-                    <input type="submit" value="Confirmar" class="primary_action">
-                    <input type="submit" value="Volver" href="index.html" class="primary_action" />
+                    <input type="submit" value="Registrarse" class="primary_action">
+                    
                 </div>
-            </form>
+            </form>  
+           
+            <div id="MensajeError">
+            
+               
+            <%= session.getAttribute("error") == null ? "" : session.getAttribute("error") %>
+                
+        <p></p>
         </div>
+        
+          
+         <form action="index.jsp">
 
-
+            <input type="submit" value="Inicio">
+        </form>
+     
+        </div>
     </body>
 </html>
-

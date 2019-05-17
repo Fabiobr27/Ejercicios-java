@@ -14,6 +14,7 @@
 
 <%@include file="ConectividadBaseDeDatos.jsp" %>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -149,6 +150,8 @@
 
             Statement s = conexion.createStatement();
 
+            String estado = (request.getParameter("CodEspe") == null) ? "listado" : "edicion";
+
             ResultSet listado = s.executeQuery("SELECT NombreMarca, NombreMod , Caballos , Año , Combustible   , CodEspe"
                     + " FROM modelo mo  , marcas ma , especificaciones espe "
                     + "Where mo.CodigoMarca = ma.CodigoMarca and espe.CodigoMod = mo.CodigoMod "
@@ -167,7 +170,7 @@
                     <th><h1>Combustible</h1></th>
                     <th><h1>Codigo Especificacion</h1></th>
 
-                    <th><h1><form action="index.html">
+                    <th><h1><form action="index.jsp">
 
                                 <input type="submit" value="Inicio">
                             </form></h1></th>
@@ -175,62 +178,84 @@
             </thead>
             <tbody>
 
+                <tr>
 
-                <%        while (listado.next()) {
-
-                        out.println("<tr><td>");
-
-                        out.println(listado.getString("NombreMarca") + "</td>");
-
-                        out.println("<td>" + listado.getString("NombreMod") + "</td>");
-
-                        out.println("<td>" + listado.getString("Caballos") + "</td>");
-
-                        out.println("<td>" + listado.getString("Año") + "</td>");
-
-                        out.println("<td>" + listado.getString("Combustible") + "</td>");
-
-                        out.println("<td>" + listado.getString("CodEspe") + "</td>");
+            <form method="get" action="ActualizaEspeci.jsp">
 
 
-                %>
 
-            <td>
+                <th></th>
+                <th><input type="text" name="NombreMod" value="<%= estado.equals("edicion") ? request.getParameter("NombreMod") : ""%>"/></th>
+                <th><input type="text" name="Caballos" value="<%= estado.equals("edicion") ? request.getParameter("Caballos") : ""%>"/></th>
+                <th><input type="text" name="Anio" value="<%= estado.equals("edicion") ? request.getParameter("Anio") : ""%>"/></th>
+                <th><input type="text" name="Combustible" value="<%= estado.equals("edicion") ? request.getParameter("Combustible") : ""%>"/></th>
+                <th><input type="hidden" name="CodEspe" value="<%= estado.equals("edicion") ? request.getParameter("CodEspe") : ""%>"/></th>
 
-                <form method="get" action="borraEspeci.jsp">
-
-                    <input type="hidden" name="codigo" value="<%=listado.getString("CodEspe")%>"/>
-
-                    <input type="submit" value="Borrar">
-                    </td>
-                    <td>
-
-                </form>
-
-                <form method="get" action="ModificaEspeci.jsp">
-
-                    <input type="hidden" name="CodEspe" value="<%=listado.getString("CodEspe")%>"/>
-                    <input type="hidden" name="Caballos" value="<%=listado.getString("Caballos")%>"/>
-                    <input type="hidden" name="Combustible" value="<%=listado.getString("Combustible")%>"/>
-                    <input type="hidden"name="Año" value="<%=listado.getString("Año")%>"/>
-
-                    <input type="submit" value="Modificar">
-
-                </form>
+                <th>    <input type="submit" value="Aceptar" ></th>
+                <th><button  >Cancelar</button></th>
 
 
-            </td>
+
+            </form>
         </tr>
+        <%        while (listado.next()) {
 
-        <%
+                out.println("<tr><td>");
 
-            } // while   
+                out.println(listado.getString("NombreMarca") + "</td>");
 
-            conexion.close();
+                out.println("<td>" + listado.getString("NombreMod") + "</td>");
+
+                out.println("<td>" + listado.getString("Caballos") + "</td>");
+
+                out.println("<td>" + listado.getString("Año") + "</td>");
+
+                out.println("<td>" + listado.getString("Combustible") + "</td>");
+
+                out.println("<td>" + listado.getString("CodEspe") + "</td>");
+
 
         %>
 
-    </table>
+        <td>
+
+            <form method="get" action="borraEspeci.jsp">
+
+                <input type="hidden" name="codigo" value="<%=listado.getString("CodEspe")%>"/>
+
+                <input type="submit" value="Borrar">
+                </td>
+                <td>
+
+            </form>
+
+            <form method="get" action="pideNumeroEspeci.jsp">
+
+
+
+                <input type="hidden" name="NombreMod" value="<%=listado.getString("NombreMod")%>"/>
+                <input type="hidden" name="Caballos" value="<%=listado.getString("Caballos")%>"/> 
+                <input type="hidden"name="Anio" value="<%=listado.getString("Año")%>"/>
+                <input type="hidden" name="Combustible" value="<%=listado.getString("Combustible")%>"/>
+                <input type="hidden" name="CodEspe" value="<%=listado.getString("CodEspe")%>"/>
+
+                <input type="submit" value="Modificar">
+
+            </form>
+
+
+        </td>
+    </tr>
+
+    <%
+
+        } // while   
+
+        conexion.close();
+
+    %>
+
+</table>
 
 
 </body>

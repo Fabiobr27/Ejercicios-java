@@ -13,7 +13,6 @@
 <%@page import="java.sql.Connection"%>
 
 <%@include file="ConectividadBaseDeDatos.jsp" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -28,10 +27,11 @@
 
     <body>
 
-        <%        Class.forName("com.mysql.jdbc.Driver");
+        <%
+
+            Class.forName("com.mysql.jdbc.Driver");
 
             Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
-
             Statement s = conexion.createStatement();
 
             s.execute("DELETE FROM especificaciones WHERE CodEspe=" + request.getParameter("codigo"));

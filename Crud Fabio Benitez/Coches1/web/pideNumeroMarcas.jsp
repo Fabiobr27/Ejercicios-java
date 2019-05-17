@@ -12,7 +12,8 @@
 
 <%@page import="java.sql.Connection"%>
 
-<%@include file="ConectividadBaseDeDatos.jsp" %>
+<%@include file = "ConectividadBaseDeDatos.jsp"%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -148,7 +149,10 @@
 
             Statement s = conexion.createStatement();
 
+            String estado = (request.getParameter("CodigoMarca") == null) ? "listado" : "edicion";
+
             ResultSet listado = s.executeQuery("SELECT * FROM marcas");
+
 
         %>
 
@@ -157,17 +161,35 @@
             <thead>
                 <tr>
                     <th><h1>Codigo</h1></th>
+
+
                     <th><h1>Nombre</h1></th>
                     <th><h1>Año fundacion</h1></th>
 
-                    <th><h1><form action="index.html">
+                    <th><h1><form action="index.jsp">
 
                                 <input type="submit" value="Inicio">
                             </form></h1></th>
                 </tr>
+
             </thead>
             <tbody>
+                <tr>
 
+            <form method="get" action="ActualizaMarcas.jsp">
+
+                <th><input type="hidden" name="CodigoMarca" value="<%= estado.equals("edicion") ? request.getParameter("CodigoMarca") : ""%>"/></th>
+
+
+
+                <th><input type="text" name="NombreMarca" value="<%= estado.equals("edicion") ? request.getParameter("NombreMarca") : ""%>"/></th>
+                <th><input type="text"  name="AnioFundacion"  value="<%= estado.equals("edicion") ? request.getParameter("AnioFundacion") : ""%>"/></th>
+
+                <th>    <input type="submit" value="Aceptar" ></th>
+                <th><button  >Cancelar</button></th>
+
+
+                </tr>
 
                 <%        while (listado.next()) {
 
@@ -180,7 +202,7 @@
                         out.println("<td>" + listado.getString("AñoFundacion") + "</td>");
 
                 %>
-
+            </form>
             <td>
 
                 <form method="get" action="borraMarcas.jsp">
@@ -194,11 +216,11 @@
 
                 </form>
 
-                <form method="get" action="ModificaMarcas.jsp">
+                <form method="get" action="pideNumeroMarcas.jsp">
 
                     <input type="hidden" name="CodigoMarca" value="<%=listado.getString("CodigoMarca")%>"/>
                     <input type="hidden" name="NombreMarca" value="<%=listado.getString("NombreMarca")%>"/>
-                    <input type="hidden" name="AñoFundacion" value="<%=listado.getString("AñoFundacion")%>"/>
+                    <input type="hidden" name="AnioFundacion" value="<%=listado.getString("AñoFundacion")%>"/>
                     <input type="submit" value="Modificar">
 
                 </form>

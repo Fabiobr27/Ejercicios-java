@@ -12,9 +12,6 @@
 
 <%@page import="java.sql.Connection"%>
 
-<%@include file="ConectividadBaseDeDatos.jsp" %>
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -144,11 +141,14 @@
 
     <body>
 
-        <%            Class.forName("com.mysql.jdbc.Driver");
+        <%
 
-            Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
+            Class.forName("com.mysql.jdbc.Driver");
+
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/coches1", "root", "");
 
             Statement s = conexion.createStatement();
+            String estado = (request.getParameter("CodigoMod") == null) ? "listado" : "edicion";
 
             ResultSet listado = s.executeQuery("SELECT NombreMarca, NombreMod , CodigoMod , ma.CodigoMarca"
                     + " FROM modelo mo  , marcas ma "
@@ -166,33 +166,49 @@
                     <th><h1>Codigo Marca</h1></th>
 
 
-                    <th><h1><form action="index.html">
+                    <th><h1><form action="index.jsp">
 
                                 <input type="submit" value="Inicio">
                             </form></h1></th>
                 </tr>
             </thead>
             <tbody>
-                </form>
+
+                <tr>
+
+            <form method="get" action="ActualizaModelo.jsp">
+
+
+                <th></th>
+                <th><input type="text" name="NombreModelo" value="<%= estado.equals("edicion") ? request.getParameter("NombreModelo") : ""%>"/></th>
+
+                <th><input type="hidden" name="CodigoMod" value="<%= estado.equals("edicion") ? request.getParameter("CodigoMod") : ""%>"/></th>
+                <th></th>
+                <th>    <input type="submit" value="Aceptar" ></th>
+                <th><button  >Cancelar</button></th>
+
+
+                </tr>
+            </form>
 
 
 
 
 
-                <%        while (listado.next()) {
+            <%        while (listado.next()) {
 
-                        out.println("<tr><td>");
+                    out.println("<tr><td>");
 
-                        out.println(listado.getString("NombreMarca") + "</td>");
+                    out.println(listado.getString("NombreMarca") + "</td>");
 
-                        out.println("<td>" + listado.getString("NombreMod") + "</td>");
+                    out.println("<td>" + listado.getString("NombreMod") + "</td>");
 
-                        out.println("<td>" + listado.getString("CodigoMod") + "</td>");
+                    out.println("<td>" + listado.getString("CodigoMod") + "</td>");
 
-                        out.println("<td>" + listado.getString("CodigoMarca") + "</td>");
+                    out.println("<td>" + listado.getString("CodigoMarca") + "</td>");
 
 
-                %>
+            %>
 
 
             <td>
@@ -207,10 +223,11 @@
 
                 </form>
 
-                <form method="get" action="ModificaModelo.jsp">
+                <form method="get" action="pideNumeroModelo.jsp">
 
                     <input type="hidden" name="CodigoMod" value="<%=listado.getString("CodigoMod")%>"/>
-                    <input type="hidden" name="NombreMod" value="<%=listado.getString("NombreMod")%>"/>
+                    <input type="hidden" name="NombreModelo" value="<%=listado.getString("NombreMod")%>"/>
+                    
                     <input type="submit" value="Modificar">
 
                 </form>

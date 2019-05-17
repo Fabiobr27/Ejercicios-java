@@ -1,16 +1,14 @@
 <%-- 
-Document   : ActualizaMarcas
-Created on : 11-abr-2019, 20:16:14
-Author     : FABIO
+    Document   : ActualizaMarcas
+    Created on : 11-abr-2019, 20:16:14
+    Author     : FABIO
 --%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
-<%@include file="ConectividadBaseDeDatos.jsp" %>
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="ConectividadBaseDeDatos.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,7 +22,7 @@ Author     : FABIO
 
     </head>
     <body>
-        <%            Class.forName("com.mysql.jdbc.Driver");
+          <%            Class.forName("com.mysql.jdbc.Driver");
 
             Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
 
@@ -34,7 +32,7 @@ Author     : FABIO
 
             String actualizacion = "UPDATE especificaciones SET "
                     + "Caballos =" + request.getParameter("Caballos")
-                    + ",Año =" + request.getParameter("Año")
+                    + ",Año =" + request.getParameter("Anio")
                     + ",Combustible ='" + request.getParameter("Combustible")
                     + "' Where CodEspe = " + Integer.parseInt(request.getParameter("CodEspe"));
 

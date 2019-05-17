@@ -7,8 +7,7 @@
 <%@page import="java.sql.ResultSet"%> 
 <%@page import="java.sql.DriverManager"%> 
 <%@page import="java.sql.Connection"%>
-<%@include file="ConectividadBaseDeDatos.jsp" %>
-
+<%@include file = "ConectividadBaseDeDatos.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -317,7 +316,7 @@
                     <th><h1>Nombre Marca</h1></th>
                     <th><h1>Nombre Modelo</h1></th>
                     <th><h1>Codigo Modelo</h1></th>
-                    <th><h1><form action="index.html">
+                    <th><h1><form action="index.jsp">
 
                                 <input type="submit" value="Inicio">
                             </form></h1></th>
@@ -343,13 +342,11 @@
                 </tr>
 
                 <%    } // while   
-                    conexion.close();
+
 
                 %>
 
         </table>
-
-
 
         <div class="wrapper">
 
@@ -360,20 +357,48 @@
 
                 <!-- Contenedor del Formulario -->
                 <div class="login-container">
-                    <label>Codigo Modelo</label>
-                    <input type="text" name="CodigoMod"/>
+
                     <label>Caballos</label>
                     <input type="text" name="Caballos"/>
                     <label>Año</label>
                     <input type="text" name="Año"/>
                     <label>Combustible</label>
                     <input type="text" name="Combustible"/>
+                    <label>Nombre Modelo</label>
+                    <div class="text">  <select name="CodigoMod" onchange="salta(this.form)">
+                            <%                                ResultSet desplegable = s.executeQuery("SELECT distinct NombreMod, mo.CodigoMod"
+                                        + " FROM  modelo  mo, especificaciones espe "
+                                );
+                            %>
 
 
 
-                    <input type="submit" value="Confirmar" class="primary_action">
+                            <option selected> Elije Especificacion
+                                <%        while (desplegable.next()) {
 
-                </div>
+                                        out.println("<option value=\"" + (desplegable.getString("CodigoMod") + "\">" + desplegable.getString("NombreMod")));
+                                %>
+
+
+
+
+
+
+
+                                <%        } // while   
+
+                                    conexion.close();
+
+                                %>
+                                </div>
+
+                                </div>
+                        </select>
+
+
+                        <input type="submit" value="Confirmar" class="primary_action">
+
+                    </div>
             </form>
         </div>
 

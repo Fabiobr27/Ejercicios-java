@@ -13,9 +13,7 @@
 <%@page import="java.sql.DriverManager"%>
 
 <%@page import="java.sql.Connection"%>
-
-<%@include file="ConectividadBaseDeDatos.jsp" %>
-
+<%@include file = "ConectividadBaseDeDatos.jsp"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -32,7 +30,6 @@
     <body>
 
         <%            Class.forName("com.mysql.jdbc.Driver");
-
             Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
 
             Statement s = conexion.createStatement();
@@ -48,13 +45,13 @@
             s.execute(insercion);
             conexion.close();
 
-          
+            // out.print(insercion);
 
         %>
 
 
 
-        <script>document.location = "PideEspecificacion.jsp"</script> 
+        <script>document.location = "index.jsp"</script> 
     </body>
 
 </html>

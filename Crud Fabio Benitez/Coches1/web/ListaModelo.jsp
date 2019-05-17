@@ -8,7 +8,8 @@
 <%@page import="java.sql.ResultSet"%> 
 <%@page import="java.sql.DriverManager"%> 
 <%@page import="java.sql.Connection"%>
-<%@include file="ConectividadBaseDeDatos.jsp" %>
+<%@include file = "ConectividadBaseDeDatos.jsp"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -137,10 +138,11 @@
 
     <body>
 
-        <%            Class.forName("com.mysql.jdbc.Driver");
+        <%
+
+            Class.forName("com.mysql.jdbc.Driver");
 
             Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
-
             Statement s = conexion.createStatement();
 
             ResultSet listado = s.executeQuery("SELECT NombreMarca, NombreMod , CodigoMod , ma.CodigoMarca"
@@ -158,7 +160,7 @@
 
                     <th><h1>Codigo Modelo</h1></th>
                     <th><h1>Codigo Marca</h1></th>
-                    <th><h1><form action="index.html">
+                    <th><h1><form action="index.jsp">
 
                                 <input type="submit" value="Inicio">
                             </form></h1></th>
@@ -192,7 +194,7 @@
                 %>
 
         </table>
-        <form action="index.html">
+        <form action="index.jsp">
 
             <input type="submit" value="Inicio">
         </form>

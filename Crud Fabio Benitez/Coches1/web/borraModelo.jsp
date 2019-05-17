@@ -10,10 +10,7 @@
 
 <%@page import="java.sql.DriverManager"%>
 
-<%@page import="java.sql.Connection"%>ç
-
-<%@include file="ConectividadBaseDeDatos.jsp" %>
-
+<%@page import="java.sql.Connection"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -21,25 +18,29 @@
 
 <html>
 
-    <head>
+  <head>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    </head>
+  </head>
 
-    <body>
+  <body>
 
-        <%        Class.forName("com.mysql.jdbc.Driver");
+    <%
 
-            Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
+      Class.forName("com.mysql.jdbc.Driver");
 
-            Statement s = conexion.createStatement();
+      Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/coches1","root", "");
 
-            s.execute("DELETE FROM modelo WHERE CodigoMod=" + request.getParameter("codigo"));
+      Statement s = conexion.createStatement();
 
-        %>	
 
-        <script>document.location = "pideNumeroModelo.jsp"</script> 
-    </body>
+
+      s.execute ("DELETE FROM modelo WHERE CodigoMod=" + request.getParameter("codigo"));
+
+    %>	
+
+    <script>document.location = "pideNumeroModelo.jsp" </script> 
+  </body>
 
 </html>

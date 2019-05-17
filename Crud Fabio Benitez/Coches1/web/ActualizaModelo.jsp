@@ -7,7 +7,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
-<%@include file="ConectividadBaseDeDatos.jsp" %>
+<%@include file = "ConectividadBaseDeDatos.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,17 +22,15 @@
 
     </head>
     <body>
-        <%
-            Class.forName("com.mysql.jdbc.Driver");
+        <%             Class.forName("com.mysql.jdbc.Driver");
 
             Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
 
             Statement s = conexion.createStatement();
-
             request.setCharacterEncoding("UTF-8");
 
             String actualizacion = "UPDATE modelo SET "
-                    + "NombreMod ='" + request.getParameter("NombreMod")
+                    + "NombreMod ='" + request.getParameter("NombreModelo")
                     + " ' Where CodigoMod = " + Integer.valueOf(request.getParameter("CodigoMod"));
 
             out.println(actualizacion);

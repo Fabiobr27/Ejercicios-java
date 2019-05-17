@@ -8,7 +8,7 @@
 <%@page import="java.sql.ResultSet"%> 
 <%@page import="java.sql.DriverManager"%> 
 <%@page import="java.sql.Connection"%>
-<%@include file="ConectividadBaseDeDatos.jsp" %>
+<%@include file = "ConectividadBaseDeDatos.jsp"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -300,10 +300,9 @@
         <%            Class.forName("com.mysql.jdbc.Driver");
 
             Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
-
             Statement s = conexion.createStatement();
 
-            ResultSet listado = s.executeQuery("SELECT NombreMarca, NombreMod , CodigoMod , ma.CodigoMarca"
+            ResultSet lista = s.executeQuery("SELECT NombreMarca, NombreMod , CodigoMod , ma.CodigoMarca"
                     + " FROM modelo mo  , marcas ma "
                     + "Where mo.CodigoMarca = ma.CodigoMarca " + "order by CodigoMod");
 
@@ -317,24 +316,24 @@
                     <th><h1>Nombre Modelo</h1></th>
                     <th><h1>Codigo Modelo</h1></th>
                     <th><h1>Codigo Marca</h1></th>
-                    <th><h1><form action="index.html">
+                    <th><h1><form action="index.jsp">
 
                                 <input type="submit" value="Inicio">
                             </form></h1></th>
                 </tr>
             </thead>
             <tbody>
-                <%                    while (listado.next()) {
+                <%                    while (lista.next()) {
 
                         out.println("<tr><td>");
 
-                        out.println(listado.getString("NombreMarca") + "</td>");
+                        out.println(lista.getString("NombreMarca") + "</td>");
 
-                        out.println("<td>" + listado.getString("NombreMod") + "</td>");
+                        out.println("<td>" + lista.getString("NombreMod") + "</td>");
 
-                        out.println("<td>" + listado.getString("CodigoMod") + "</td>");
+                        out.println("<td>" + lista.getString("CodigoMod") + "</td>");
 
-                        out.println("<td>" + listado.getString("CodigoMarca") + "</td>");
+                        out.println("<td>" + lista.getString("CodigoMarca") + "</td>");
 
                 %>
 
@@ -342,28 +341,68 @@
 
                 <%       } // while   
 
-                    conexion.close();
 
                 %>
 
         </table>
 
 
+
+
+
         <div class="wrapper">
 
 
             <!-- Formulario -->
-            <form action="grabaModelo.jsp" method="post" class="login"> 
+            <form action="grabaModelo.jsp" method="post" class="login">
                 <h2>Inserta Modelo</h2>
 
                 <!-- Contenedor del Formulario -->
                 <div class="login-container">
-                    <label>Codigo Modelo</label>
-                    <input type="text" name="CodigoMod"/>
+
                     <label>Nombre Modelo</label>
                     <input type="text" name="NombreModelo"/>
-                    <label>Codigo Marca</label>
-                    <input type="text" name="CodigoMarca"/>>
+
+                    <label>Codigo Modelo</label>
+                    <input type="text" name="CodigoMod"/>
+
+
+                    <label>Marca</label>
+
+                    <div class="text">  <select name="CodigoMarca" onchange="salta(this.form)">
+                    </div>
+
+
+
+                    <%                        ResultSet listado = s.executeQuery("SELECT NombreMarca, CodigoMarca"
+                                + " FROM marcas  ");
+
+
+                    %>
+
+
+                    <option selected> Elija Marca
+
+                        <%        while (listado.next()) {
+
+                                out.println("<option value=\"" + (listado.getString("CodigoMarca") + "\">" + listado.getString("NombreMarca")));
+                        %>
+
+
+
+
+
+
+
+                        <%        } // while   
+                        %>
+                    </option>
+                    <%
+
+                    %>
+
+
+
 
 
 
@@ -372,7 +411,9 @@
 
                 </div>
             </form>
+
         </div>
+
 
 
 

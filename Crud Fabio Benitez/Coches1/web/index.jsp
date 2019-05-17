@@ -1,3 +1,10 @@
+<%-- 
+    Document   : index
+    Created on : 15-may-2019, 8:29:47
+    Author     : FABIO
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -6,7 +13,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title> Base De Datos Coches</title>
+        <title> Base De Datos Coches Prueba</title>
         <meta charset="UTF-8">
        
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +28,7 @@ and open the template in the editor.
                 line-height: 1.42em;
                 color:#A7A1AE;
                 background-color:#1F2739;
+                
             }
 
             h1 {
@@ -134,9 +142,41 @@ and open the template in the editor.
 
     </head>
     <body>
-     
+             <%
+      
+        if(session.getAttribute("Usuario") == null){
+            %>
+            <button>
+            <p><a href="login.jsp" style="text-decoration:none;" >Logeate</a></p>
+            </button>
+            
+            
+            <table class="container">
+            <thead>
+                <tr>
+                    <th><h1>Marcas</h1></th>
+                    <th><h1>Modelos</h1></th>
+                    <th><h1>Especificaciones</h1></th> 
+                </tr>
+                <tr>
+                    <td><a href="ListaMarcas.jsp" style="text-decoration: none">Mostrar Marcas</a></td>
+                    <td><a href="PideModelo.jsp" style="text-decoration: none">Mostrar Modelo </td>
+                    <td><a href="PideEspecificacion.jsp" style="text-decoration: none">Mostrar Especificaciones</a> </td>
+                </tr>
+            <%
+                
+        }else{
 
- <table class="container">
+%>
+           
+            <button >
+                 <p><a href="logout.jsp" style="text-decoration:none;">Cerrar Sesion</a></p>
+
+            </button>
+           
+            
+            
+            <table class="container">
             <thead>
                 <tr>
                     <th><h1>Marcas</h1></th>
@@ -163,6 +203,9 @@ and open the template in the editor.
             </tbody>
  </table>
                
+           <%}%>
+
+ 
 
 
 

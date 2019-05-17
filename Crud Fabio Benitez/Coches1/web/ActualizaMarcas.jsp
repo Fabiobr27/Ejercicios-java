@@ -7,9 +7,6 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
-
-<%@include file="ConectividadBaseDeDatos.jsp" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,10 +21,9 @@
         <title>Club de Baloncesto - Luis José Sánchez</title>
     </head>
     <body>
-        <%            Class.forName("com.mysql.jdbc.Driver");
-
-            Connection conexion = DriverManager.getConnection(NombreBaseDatos, nombre, Contrasena);
-
+        <%
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/coches1", "root", "");
             Statement s = conexion.createStatement();
 
             request.setCharacterEncoding("UTF-8");
@@ -35,17 +31,17 @@
             String actualizacion = "UPDATE marcas SET "
                     + "NombreMarca ='" + request.getParameter("NombreMarca")
                     + "',AñoFundacion=" + Integer.valueOf(request.getParameter("AñoFundacion")) + " Where CodigoMarca = " + Integer.valueOf(request.getParameter("CodigoMarca"));
-
-            //  out.println(actualizacion);
+           
+          //  out.println(actualizacion);
             s.execute(actualizacion);
             out.println("Socio actualizado correctamente.");
 
             conexion.close();
         %>
         <br>
-        <script>document.location = "pideNumeroMarcas.jsp"</script> 
+       <script>document.location = "pideNumeroMarcas.jsp" </script> 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-    </body>
+</body>
 </html>
